@@ -3,6 +3,7 @@
 package com.example;
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.view.ViewScoped;
 import jakarta.persistence.*;
 import jakarta.transaction.*;
 import jakarta.inject.Named;
@@ -11,7 +12,7 @@ import org.apache.logging.log4j.*;
 
 
 @Named("statistics")
-@SessionScoped
+@ViewScoped
 @Entity(name = "statistics")
 @Transactional
 public class Statistics implements Serializable{

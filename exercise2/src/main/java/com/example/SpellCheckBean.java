@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.List; // Use java.util.List instead of java.lang.reflect.Array
 
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
 @Named("check")
-@ViewScoped
+@SessionScoped
 public class SpellCheckBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,6 +19,11 @@ public class SpellCheckBean implements Serializable {
 
     @EJB
     private SpellCheckService spellCheckService; // Injecting the EJB
+
+    public String checkSpellingAndNavigate() {
+        checkSpelling();
+        return "output?faces-redirect=true";  // Add redirect to avoid view state issues
+    }
 
     public void checkSpelling() {
         if (inputText != null && !inputText.trim().isEmpty()) {

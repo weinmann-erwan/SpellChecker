@@ -6,13 +6,68 @@
       xmlns:ui="jakarta.faces.facelets" xml:lang="en">
 <h:head>
     <title>Spell Checker - Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #635f5f;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: none;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .messages {
+            margin-top: 10px;
+            color: #d9534f;
+        }
+    </style>
 </h:head>
-    <h:body>
+<h:body>
+    <f:view encoding="UTF-8">
         <h:form>
-            <h:inputTextarea value="#{check.inputText}" rows="10" cols="50" />
-            <h:commandButton value="Check Spelling" action="#{check.checkSpelling}" />
-                         
-        <h:messages globalOnly="true" />
+            <h:inputTextarea value="#{check.inputText}" rows="10" cols="50" styleClass="textarea" />
+            <h:commandButton value="Check Spelling" action="#{check.checkSpellingAndNavigate}" styleClass="button" />
+            <h:messages globalOnly="true" styleClass="messages" />
         </h:form>
-    </h:body>
+    </f:view>
+</h:body>
 </html>

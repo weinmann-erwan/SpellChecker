@@ -2,25 +2,84 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="jakarta.faces.facelets" xml:lang="en">
 <h:head>
     <title>Spell Checker - Output</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #635f5f;
+            color: #333;
+        }
+
+        h:outputText, h:commandButton {
+            margin: 15px;
+            font-size: 18px;
+        }
+
+        table.custom-table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table.custom-table th, table.custom-table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table.custom-table th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+
+        table.custom-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table.custom-table tr:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </h:head>
 <h:body>
-    <h:form>
-        <h:outputText value="Spelling Errors:" />
-        <h:dataTable value="#{check.errors}" var="error">
-            <h:column>
-                <f:facet name="header">Wrong Word</f:facet>
-                #{error.wrongWord}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Suggested Correction</f:facet>
-                #{error.correctWord}
-            </h:column>
-        </h:dataTable>
-        <h:commandButton value="Back" action="index.xhtml" />
-    </h:form>
+    <f:view>
+        <h:form prependId="false">
+            <h:outputText value="Spelling Errors:" styleClass="header-text" />
+            <h:dataTable value="#{check.errors}" var="error" styleClass="custom-table">
+                <h:column>
+                    <f:facet name="header">Wrong Word</f:facet>
+                    <h:outputText value="#{error.wrongWord}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Suggested Correction</f:facet>
+                    <h:outputText value="#{error.correctWord}" />
+                </h:column>
+            </h:dataTable>
+            <h:commandButton value="Back" action="index" styleClass="back-button" />
+        </h:form>
+    </f:view>
 </h:body>
 </html>
