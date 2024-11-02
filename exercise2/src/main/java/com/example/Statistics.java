@@ -2,7 +2,7 @@
 
 package com.example;
 
-import jakarta.enterprise.context.SessionScoped;
+
 import jakarta.faces.view.ViewScoped;
 import jakarta.persistence.*;
 import jakarta.transaction.*;

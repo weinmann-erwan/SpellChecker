@@ -2,18 +2,15 @@ package com.example;
 
 import java.io.Serializable;
 import java.util.Iterator;
-import java.util.List; // Use java.util.List instead of java.lang.reflect.Array
-
+import java.util.List; 
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
-import jakarta.transaction.Transactional;
+
 
 @Named("check")
 @SessionScoped
