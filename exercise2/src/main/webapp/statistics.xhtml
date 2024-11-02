@@ -1,23 +1,124 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head>
-    <title>Statistiques des Erreurs</title>
-</h:head>
-<h:body>
-    <h1>Statistiques des Erreurs d'Orthographe</h1>
-    <h:form>
-    <h:dataTable value="#{spellCheckBean.statistics}" var="stat">
-        <h:column>
-            <f:facet name="header">Wrong Word</f:facet>
-            #{stat.wrongWord}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Count</f:facet>
-            #{stat.count}
-        </h:column>
-    </h:dataTable>
-    </h:form>
-</h:body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/templates/template1.xhtml">
+    <ui:define name="title">
+        Spell Checker
+    </ui:define>
+
+    <ui:define name="top">
+        Spell Checker
+    </ui:define>
+    <ui:define name="content">
+        <h:head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #635f5f;
+                    color: #333;
+                }
+
+                .header-text {
+                    text-align: center;
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #0a2149;
+                    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+                }
+
+                h:outputText,
+                h:commandButton {
+                    margin: 15px;
+                    font-size: 18px;
+                }
+
+
+                table.custom-table {
+                    width: 95%;
+                    margin: 40px auto;
+                    border-collapse: collapse;
+                    background-color: #fff;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    border-radius: 8px;
+                    overflow: hidden;
+                }
+
+                table.custom-table th,
+                table.custom-table td {
+                    padding: 15px;
+                    border: 5px solid #ddd;
+                    text-align: left;
+                }
+
+                table.custom-table th {
+                    background-color: #0a2149;
+                    color: white;
+                    font-weight: bold;
+                }
+
+                table.custom-table tr:nth-child(even) {
+                    background-color: #f9f9f9a2;
+                }
+
+                table.custom-table tr:hover {
+                    background-color: #f1f1f157;
+                    cursor: pointer;
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 20px;
+                }
+
+                .button {
+                    display: block;
+                    padding: 12px 20px;
+                    margin-bottom: 10px;
+                    /* Space between buttons */
+                    background-color: #0a2149;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 16px;
+                    text-align: center;
+                    cursor: pointer;
+                    text-decoration: none;
+                    width: 200px;
+                    /* Fixed width for consistency */
+                    transition: background-color 0.3s;
+                }
+
+                .button:hover {
+                    background-color: #071630;
+                }
+            </style>
+        </h:head>
+        <h:body>
+            <f:view>
+                <h:form prependId="false">
+                    <h:outputText value="Statistics" styleClass="header-text" />
+                    <h:dataTable value="#{check.statistics}" var="statistic" styleClass="custom-table">
+                        <h:column>
+                            <f:facet name="header">Wrong Word</f:facet>
+                            <h:outputText value="#{statistic.wrongWord}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Suggested Correction</f:facet>
+                            <h:outputText value="#{statistic.count}" />
+                        </h:column>
+                    </h:dataTable>
+                    <div class="button-container">
+                        <h:commandButton value="Back" action="index" styleClass="button" />
+                        <h:commandButton value="Clear Statistics" action="#{check.clearStatistics}"
+                            styleClass="button" />
+                    </div>
+                </h:form>
+            </f:view>
+        </h:body>
+    </ui:define>
+</ui:composition>
+
 </html>

@@ -5,11 +5,26 @@
           https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
         version="3.0">
 
-    <persistence-unit name="exercise2"
-                      transaction-type="JTA">
+    <persistence-unit name="exercise2" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/MariaDBDS</jta-data-source>
+        
         <class>com.example.Error</class> 
         <class>com.example.Statistics</class> 
+        
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        
+        <!-- Schema generation properties -->
+        <properties>
+            <!-- Automatically create tables if they don't exist -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="create" />
+            
+            <!-- Use 'update' to keep data and modify schema as needed on redeployment -->
+            <!-- <property name="jakarta.persistence.schema-generation.database.action" value="update" /> -->
+            
+            <!-- Other options as needed for dialect and logging -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+        </properties>
     </persistence-unit>
 </persistence>

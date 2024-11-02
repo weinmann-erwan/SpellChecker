@@ -36,11 +36,11 @@ public class SpellCheckService {
                 errors.add(new Error(null, wrongWord, correctWord));
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exceptions appropriately
+            e.printStackTrace(); 
         }
         return errors;
     }
-    // Method to record an error and update statistics
+
     public void recordError(String wrongWord, String correctWord) {
         // Save the error
         Error error = new Error();
@@ -62,7 +62,7 @@ public class SpellCheckService {
         }
     }
 
-    // Helper method to find statistics by wrong word
+   
     private Statistics findStatisticsByWrongWord(String wrongWord) {
         TypedQuery<Statistics> query = entityManager.createQuery(
             "SELECT s FROM Statistics s WHERE s.wrongWord = :word", Statistics.class);
@@ -70,10 +70,8 @@ public class SpellCheckService {
         return query.getResultStream().findFirst().orElse(null);
     }
 
-    // Method to retrieve statistics (optional)
-    public List<Statistics> getStatistics() {
-        return entityManager.createQuery("SELECT s FROM Statistics s ORDER BY s.count DESC", Statistics.class)
-                            .getResultList();
+    public void clearStatistics() {
+        entityManager.createQuery("DELETE FROM Statistics").executeUpdate();
     }
+    
 }
-

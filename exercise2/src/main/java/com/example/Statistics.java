@@ -13,7 +13,8 @@ import org.apache.logging.log4j.*;
 
 @Named("statistics")
 @ViewScoped
-@Entity(name = "statistics")
+@Entity
+@Table(name = "statistics")
 @Transactional
 public class Statistics implements Serializable{
     
